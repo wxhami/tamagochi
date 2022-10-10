@@ -32,3 +32,18 @@ while (pet.IsAlive)
         pet.ShowPet();
     }
 }
+
+if (pet.Age >= 20)
+{
+    Console.WriteLine("Your pet is died of old age");
+}
+
+if (pet.Hungry >= 10)
+{
+    Console.WriteLine("Your pet is died of hunger");
+}
+
+if (pet.Weight >= 10)
+{
+    Console.WriteLine("Your pet is died of obesity");
+}
