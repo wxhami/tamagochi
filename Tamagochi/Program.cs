@@ -6,4 +6,6 @@ Console.WriteLine("Enter color your pet");
 string color = Console.ReadLine();
 
 Pet pet = new Pet(name, color);
+
+
 pet.ShowPet();
