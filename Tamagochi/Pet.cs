@@ -14,7 +14,7 @@ public class Pet
     public int Age;
 
     public bool IsAlive => CheckAlive();
-    
+
     public Pet(string name, string color)
     {
         Name = name;
@@ -25,7 +25,34 @@ public class Pet
         Age = 0;
     }
 
-    public void ShowPet()
+    public void Action(PetActionType action)
+    {
+        if (action == PetActionType.Show)
+        {
+            ShowPet();
+        }
+        else
+        {
+            Age++;
+
+            Animation(GetStringAction(action));
+
+            switch (action)
+            {
+                case PetActionType.Play:
+                    Play();
+                    break;
+                case PetActionType.Eat:
+                    Eat();
+                    break;
+                case PetActionType.Sport:
+                    Sport();
+                    break;
+            }
+        }
+    }
+
+    private void ShowPet()
     {
         Console.WriteLine(
             $"Name: {Name} \nColor: {Color} \nMood: {GetMood()} \nWeight: {Weight} \nHungry: {Hungry} \nAge: {Age}");
@@ -51,7 +78,7 @@ public class Pet
         return "depression";
     }
 
-    public void Eat()
+    private void Eat()
     {
         if (Hungry == 0)
         {
@@ -74,13 +101,10 @@ public class Pet
         {
             Weight += 2;
         }
-
-        Age++;
     }
 
-    public void Play()
+    private void Play()
     {
-        Age++;
         if (Mood == 0)
         {
             Weight += 2;
@@ -90,10 +114,8 @@ public class Pet
         Hungry += 2;
     }
 
-    public void GetSport()
+    private void Sport()
     {
-        Age++;
-
         if (Mood > 0)
         {
             Weight -= 1;
@@ -108,7 +130,7 @@ public class Pet
         Mood -= 1;
     }
 
-    public bool CheckAlive()
+    private bool CheckAlive()
     {
         if (Hungry >= 10 || Weight >= 10.0 || Age >= 20)
         {
@@ -116,5 +138,25 @@ public class Pet
         }
 
         return true;
+    }
+
+    private void Animation(string action)
+    {
+        Console.Write(action);
+        Console.Write(".");
+        Thread.Sleep(1000);
+        Console.Write(".");
+        Thread.Sleep(1000);
+        Console.WriteLine(".");
+    }
+
+    private string GetStringAction(PetActionType action)
+    {
+        return action switch
+        {
+            PetActionType.Eat => "Eating",
+            PetActionType.Play => "Playing",
+            PetActionType.Sport => "Training"
+        };
     }
 }
