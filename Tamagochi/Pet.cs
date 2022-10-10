@@ -105,4 +105,14 @@ public class Pet
         Hungry += 3;
         Mood -= 1;
     }
+
+    public bool CheckAlive()
+    {
+        if (Hungry == 10 || Weight == 10.0 || Age == 20)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }
