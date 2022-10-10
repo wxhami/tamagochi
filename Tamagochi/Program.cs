@@ -7,20 +7,28 @@ string color = Console.ReadLine();
 
 Pet pet = new Pet(name, color);
 
-
-Console.WriteLine("Choose action with your pet: 1 - play, 2 - feed, 3 - playing sport"); 
-int action = Convert.ToInt32(Console.ReadLine());
-if ( action == 1)
+while (pet.IsAlive)
 {
-    pet.Play();
-}
 
-if (action == 2)
-{
-    pet.Eat();
-}
+    Console.WriteLine("Choose action with your pet: 1 - play, 2 - feed, 3 - playing sport, 4 - show characteristics");
+    int action = Convert.ToInt32(Console.ReadLine());
+    if (action == 1)
+    {
+        pet.Play();
+    }
 
-if (action == 3)
-{
-    pet.GetSport();
+    if (action == 2)
+    {
+        pet.Eat();
+    }
+
+    if (action == 3)
+    {
+        pet.GetSport();
+    }
+
+    if (action == 4)
+    {
+        pet.ShowPet();
+    }
 }

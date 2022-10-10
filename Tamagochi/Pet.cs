@@ -13,6 +13,8 @@ public class Pet
     public int Hungry;
     public int Age;
 
+    public bool IsAlive => CheckAlive();
+    
     public Pet(string name, string color)
     {
         Name = name;
@@ -108,7 +110,7 @@ public class Pet
 
     public bool CheckAlive()
     {
-        if (Hungry == 10 || Weight == 10.0 || Age == 20)
+        if (Hungry >= 10 || Weight >= 10.0 || Age >= 20)
         {
             return false;
         }
