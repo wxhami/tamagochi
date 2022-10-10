@@ -6,44 +6,103 @@ namespace Tamagochi;
 
 public class Pet
 {
-   public int Mood;
-   public string Name;
-   public string Color;
-   public int Weight;
-   public int Hungry;
-   public int Age;
+    public int Mood;
+    public string Name;
+    public string Color;
+    public double Weight;
+    public int Hungry;
+    public int Age;
 
-   public Pet(string name, string color)
-   {
-      Name = name;
-      Color = color;
-      Mood = 0;
-      Weight = 0;
-      Hungry = 0;
-      Age = 0;
-   }
+    public Pet(string name, string color)
+    {
+        Name = name;
+        Color = color;
+        Mood = 0;
+        Weight = 0;
+        Hungry = 0;
+        Age = 0;
+    }
 
-   public void ShowPet()
-   {
-      Console.WriteLine($"Name: {Name} \nColor: {Color} \nMood: {GetMood()} \nWeight: {Weight} \nHungry: {Hungry} \nAge: {Age}");
-   }
+    public void ShowPet()
+    {
+        Console.WriteLine(
+            $"Name: {Name} \nColor: {Color} \nMood: {GetMood()} \nWeight: {Weight} \nHungry: {Hungry} \nAge: {Age}");
+    }
 
-   public string GetMood()
-   {
-      if (Mood <= 3 && Mood >= 1)
-      {
-         return "sad";
-      }
-      else if (Mood <= 6 && Mood >= 4) 
-      {
-         return "normal";
-      }
-      else if (Mood <= 10 && Mood >= 5)
-      {
-         return "happy";
-      }
+    private string GetMood()
+    {
+        if (Mood is <= 3 and >= 1)
+        {
+            return "sad";
+        }
 
-      return "depression";
-   }
+        if (Mood <= 6 && Mood >= 4)
+        {
+            return "normal";
+        }
+
+        if (Mood <= 10 && Mood >= 5)
+        {
+            return "happy";
+        }
+
+        return "depression";
+    }
+
+    public void Eat()
+    {
+        if (Hungry == 0)
+        {
+            Weight++;
+        }
+
+        if (Hungry > 0 && Hungry < 4)
+        {
+            Hungry = 0;
+        }
+
+        if (Hungry >= 4)
+        {
+            Weight += 0.3;
+            Hungry -= 3;
+            Mood += 1;
+        }
+
+        if (Mood == 0)
+        {
+            Weight += 2;
+        }
+
+        Age++;
+    }
+
+    public void Play()
+    {
+        Age++;
+        if (Mood == 0)
+        {
+            Weight += 2;
+        }
+
+        Mood += 2;
+        Hungry += 2;
+    }
+
+    public void GetSport()
+    {
+        Age++;
+
+        if (Mood > 0)
+        {
+            Weight -= 1;
+        }
+
+        if (Mood == 0)
+        {
+            Weight += 2;
+        }
+
+        Hungry += 3;
+        Mood -= 1;
+    }
 }
-
